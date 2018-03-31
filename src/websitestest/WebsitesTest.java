@@ -32,19 +32,10 @@ public class WebsitesTest {
         System.setProperty("webdriver.gecko.driver", "C:\\Users\\User\\Documents\\NetBeansProjects\\WebsitesTest\\libs\\geckodriver.exe");
         WebDriver webDriver = new FirefoxDriver();
     
-        webDriver.get("http://toolsqa.wpengine.com/");
+        webDriver.get("https://stackoverflow.com/");
         System.out.println(webDriver.getCurrentUrl());
         
-        java.util.List<WebElement> links = webDriver.findElements(By.tagName("a"));
- 
-	System.out.println(links.size());
- 
-        for (int i = 1; i<=links.size(); i=i+1)
-        {
-
-            System.out.println(links.get(i).getText());
-
-        }
+        webDriver.findElement(By.id("nav-questions")).click();
     }
     
     /**
