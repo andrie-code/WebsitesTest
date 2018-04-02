@@ -20,6 +20,7 @@ import java.util.*;
  * @author User
  */
 public class WebsitesTest {
+    WebDriver webDriver;
     
     public WebsitesTest() {
         test();
@@ -30,12 +31,28 @@ public class WebsitesTest {
      */
     public void test() {
         System.setProperty("webdriver.gecko.driver", "C:\\Users\\User\\Documents\\NetBeansProjects\\WebsitesTest\\libs\\geckodriver.exe");
-        WebDriver webDriver = new FirefoxDriver();
+        webDriver = new FirefoxDriver();
     
         webDriver.get("https://stackoverflow.com/");
         System.out.println(webDriver.getCurrentUrl());
         
-        webDriver.findElement(By.id("nav-questions")).click();
+        findClickId("nav-questions", "https://stackoverflow.com/questions");
+        findClickId("nav-jobs", "https://stackoverflow.com/jobs?med=site-ui&ref=jobs-tab");
+        findClickId("nav-tags", "https://stackoverflow.com/tags");
+        findClickId("nav-users", "https://stackoverflow.com/users");
+        
+        webDriver.findElement(By.className("js-inbox-button")).click();
+        webDriver.findElement(By.className("topbar-icon-on")).click();
+    }
+    
+    public void findClickId(String id, String URL) {
+        String matchedURL;
+        
+        webDriver.findElement(By.id(id)).click();
+        matchedURL = webDriver.getCurrentUrl();
+        if (matchedURL.equalsIgnoreCase(URL)) {
+            System.out.println("Correct URL navigation!");
+        }
     }
     
     /**
